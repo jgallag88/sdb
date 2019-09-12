@@ -36,7 +36,7 @@ class Filter(sdb.Command):
             self.parser.error("the following arguments are required: expr")
 
         index = None
-        operators = ["==", "!=", ">", "<", ">=", "<="]
+        operators = ["==", "/=", ">", "<", ">=", "<="]
         for operator in operators:
             try:
                 index = self.args.expr.index(operator)
@@ -74,6 +74,8 @@ class Filter(sdb.Command):
             raise sdb.CommandEvalSyntaxError(self.name, err)
 
         self.compare = self.args.expr[index]
+        if self.compare == "/=":
+            self.compare = "!="
 
     def _init_argparse(self, parser: argparse.ArgumentParser) -> None:
         parser.add_argument("expr", nargs=argparse.REMAINDER)
