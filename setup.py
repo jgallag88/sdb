@@ -10,6 +10,7 @@ setup(
         "sdb",
         "sdb.commands",
         "sdb.commands.internal",
+        "sdb.commands.dbus",
         "sdb.commands.linux",
         "sdb.commands.linux.internal",
         "sdb.commands.spl",
